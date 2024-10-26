@@ -1,0 +1,64 @@
+﻿/* Empcss.css */
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Light gray background */
+    color: #343a40; /* Dark text color */
+}
+
+.container {
+    max-width: 800px;
+    margin: auto; /* Center the container */
+    padding: 20px;
+}
+
+/* Header Styles */
+h2, h3 {
+    color: #007bff; /* Primary color for headers */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+}
+
+/* Table Styles */
+.table {
+    background-color: white; /* White table background */
+    border-radius: 5px; /* Rounded corners */
+}
+
+/* Button Styles */
+.btn {
+    transition: background-color 0.3s; /* Smooth transition for hover effects */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Primary button color */
+    border: none;
+}
+
+    .btn-primary:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+    }
+
+.btn-secondary {
+    background-color: #6c757d; /* Secondary button color */
+    border: none;
+}
+
+    .btn-secondary:hover {
+        background-color: #5a6268; /* Darker shade on hover */
+    }
+
+.btn-warning {
+    background-color: #ffc107; /* Warning button color */
+    color: #fff; /* White text */
+}
+
+    .btn-warning:hover {
+        background-color: #e0a800; /* Darker shade on hover */
+    }
+
+/* Responsive Image Styles */
+.rounded-circle {
+    border-radius: 50%; /* Circular images */
+    border: 2px solid #007bff; /* Border around the image */
+}

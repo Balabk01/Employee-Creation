@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Employee";
+}
+@model List<Employee_Creation.Models.Employee>
+
+<h2 class="text-center mt-4 font-weight-bold text-primary">Employee Management</h2>
+
+<!-- Add/Edit Employee Form -->
+<div class="container my-4 p-4 border rounded shadow-sm bg-light">
+    <h3 class="text-center font-weight-bold" id="formTitle">Add New Employee</h3>
+    @using (Html.BeginForm("AddEmployee", "Home", FormMethod.Post, new { enctype = "multipart/form-data", id = "employeeForm" }))
+    {
+        <div class="form-group">
+            <label for="Name">Name:</label>
+            @Html.TextBox("Name", null, new { @class = "form-control", id = "Name", placeholder = "Enter Employee Name" })
+        </div>
+        <div class="form-group">
+            <label for="DateOfBirth">Date of Birth:</label>
+            @Html.TextBox("DateOfBirth", "", new { @class = "form-control", type = "date", id = "DateOfBirth" })
+        </div>
+        <div class="form-group">
+            <label for="Email">Email:</label>
+            @Html.TextBox("Email", null, new { @class = "form-control", id = "Email", placeholder = "Enter Employee Email" })
+        </div>
+        <div class="form-group">
+            <label for="Picture">Picture:</label>
+            <input type="file" id="Picture" name="Picture" class="form-control-file" />
+            <small class="form-text text-muted">Supported formats: .jpg, .jpeg, .png</small>
+        </div>
+        <div class="form-group text-center">
+            <img id="PicturePreview" src="" alt="Preview" style="display:none; width: 100px; height: 100px; margin-top: 10px;" class="rounded-circle border" />
+        </div>
+        <div class="text-center">
+            <button id="Ademp" type="button" class="btn btn-primary mt-3" onclick="submitEmployee()">Add Employee</button>
+            <button id="ResetEmp" type="button" class="btn btn-secondary mt-3" onclick="resetEmployeeForm()">Reset Form</button>
+        </div>
+    }
+</div>
+
+<!-- Manage Employees Section -->
+<div class="container">
+    <h3 class="text-center mb-4 font-weight-bold">Manage Employees</h3>
+    <table class="table table-hover table-bordered text-center">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Date of Birth</th>
+                <th>Email</th>
+                <th>Picture</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.Name</td>
+                    <td>@employee.DateOfBirth.ToShortDateString()</td>
+                    <td>@employee.Email</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(employee.PicturePath))
+                        {
+                            <img src="@Url.Content("~/Images/" + employee.PicturePath)" alt="Employee Picture" width="50" height="50" class="rounded-circle" />
+                        }
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning" onclick="editEmployee(@employee.ID, event)">Edit</a>
+                        <a href="#" class="btn btn-sm btn-danger" onclick="deleteEmployee(@employee.ID, event)">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="~/Scripts/Empjs.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<link href="~/Content/Empcss.css" rel="stylesheet" />
